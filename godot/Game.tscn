@@ -117,10 +117,12 @@ zoom = Vector2( 2, 2 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 layer = 0
+scroll_limit_begin = Vector2( -9999, 9999 )
 scroll_limit_end = Vector2( 9999, 9999 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 light_mask = 2
+motion_scale = Vector2( 1.5, 1.5 )
 motion_mirroring = Vector2( 1280, 720 )
 script = ExtResource( 10 )
 
