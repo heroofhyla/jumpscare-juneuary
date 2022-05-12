@@ -11,6 +11,15 @@ onready var original_flashlight_length = hand.position.distance_to(flashlight.po
 var velocity = Vector2.ZERO
 var max_speed = 200
 
+var facing = 1
+var right_camera_position = Vector2(-90, -464)
+var left_camera_position = Vector2(-1190,-465)
+var right_mouse_bounds = Rect2(117,-340, 916,460)
+var left_mouse_bounds = Rect2(-1280 + 364 - 117, -340, 916, 460)
+var mouse_bounds = right_mouse_bounds
+var sprite_right = load("res://test_player.png")
+var sprite_left = load("res://test_player_left.png")
+
 func _ready():
 	var verts = PoolVector2Array()
 	verts.push_back(Vector2(0,0))
@@ -25,21 +34,42 @@ func _ready():
 	#mesh_instance.mesh = mesh
 	
 func _input(event):
+	if event.is_action_pressed("turn"):
+		facing = 1 - facing
+	
+		if facing == 1:
+			#$Body.scale.x = 1
+			$PlayerCamera.position = right_camera_position
+			$LightBeam.position = $PlayerCamera.position
+			mouse_bounds = right_mouse_bounds
+			$Body.texture = sprite_right
+			$Body/Arm.position.x -= 32
+		else:
+			#$Body.scale.x = -1
+			$PlayerCamera.position = left_camera_position
+			$LightBeam.position = $PlayerCamera.position
+			mouse_bounds = left_mouse_bounds
+			$Body.texture = sprite_left
+			$Body/Arm.position.x += 32
+		$FlashlightSpot.position.x *= -1
+		update_flashlight()
+
 	if event is InputEventMouseMotion:
 		var rel = event.relative
 		#flashlight_target.position += rel
 		flashlight.position += rel
+		update_flashlight()
+
+func update_flashlight():
 		var flashlight_length = hand.position.distance_to(flashlight.position)
 		var length_ratio = flashlight_length/original_flashlight_length
 		arm.rotation = elbow.global_position.direction_to(flashlight.global_position).angle()
-		flashlight.position.x = clamp(flashlight.position.x, 117,1033)
-		flashlight.position.y = clamp(flashlight.position.y, -340,120)
+		flashlight.position.x = clamp(flashlight.position.x, mouse_bounds.position.x,mouse_bounds.end.x)
+		flashlight.position.y = clamp(flashlight.position.y, mouse_bounds.position.y, mouse_bounds.end.y)
 		flashlight.scale.x = length_ratio/4 + .5
 		flashlight.scale.y = length_ratio/8 + .5
 		flashlight.rotation = hand.global_position.direction_to(flashlight.global_position).angle()
 		flashlight.modulate.a = (2.5 - flashlight.scale.x) / 2
-
-
 func _physics_process(delta):
 	var x_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	velocity.x = x_input * max_speed
