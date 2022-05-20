@@ -17,8 +17,8 @@ var left_camera_position = Vector2(-1190,-465)
 var right_mouse_bounds = Rect2(117,-340, 916,460)
 var left_mouse_bounds = Rect2(-1280 + 364 - 117, -340, 916, 460)
 var mouse_bounds = right_mouse_bounds
-var sprite_right = load("res://test_player.png")
-var sprite_left = load("res://test_player_left.png")
+var sprite_right = load("res://player/test_player.png")
+var sprite_left = load("res://player/test_player_left.png")
 
 func _ready():
 	var verts = PoolVector2Array()

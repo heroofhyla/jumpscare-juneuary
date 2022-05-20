@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://text_file_reader/DirectoryText.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://entity/Entity.gd"
+}, {
+"base": "Node",
+"class": "EntityState",
+"language": "GDScript",
+"path": "res://entity/EntityState.gd"
+}, {
 "base": "Label",
 "class": "FileTextDisplay",
 "language": "GDScript",
@@ -37,6 +47,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AudioPoolPlayer": "",
 "DirAllTextDisplay": "",
+"Entity": "",
+"EntityState": "",
 "FileTextDisplay": "",
 "MusicPlayer": "",
 "TextFileReader": ""
