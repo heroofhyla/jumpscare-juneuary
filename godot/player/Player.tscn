@@ -1,12 +1,22 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/test_player.png" type="Texture" id=1]
 [ext_resource path="res://player/arm.png" type="Texture" id=2]
 [ext_resource path="res://player/flashlight_spot.png" type="Texture" id=3]
+[ext_resource path="res://player/LightBeamTexture.gd" type="Script" id=4]
 [ext_resource path="res://player/Player.gd" type="Script" id=5]
+[ext_resource path="res://b_icon.png" type="Texture" id=6]
+[ext_resource path="res://t_icon.png" type="Texture" id=7]
+[ext_resource path="res://e_icon.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 27.5, 184.5 )
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("BeamViewport")
+
+[sub_resource type="CanvasItemMaterial" id=4]
+light_mode = 1
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 90, 464 )
@@ -19,14 +29,17 @@ position = Vector2( 197, -33 )
 position = Vector2( 163, -22 )
 texture = ExtResource( 3 )
 
-[node name="LightTop" type="Position2D" parent="FlashlightSpot"]
+[node name="LightTop" type="Sprite" parent="FlashlightSpot"]
 position = Vector2( -1, -53 )
+texture = ExtResource( 7 )
 
-[node name="LightBottom" type="Position2D" parent="FlashlightSpot"]
+[node name="LightBottom" type="Sprite" parent="FlashlightSpot"]
 position = Vector2( -1, 57 )
+texture = ExtResource( 6 )
 
-[node name="LightEnd" type="Position2D" parent="FlashlightSpot"]
+[node name="LightEnd" type="Sprite" parent="FlashlightSpot"]
 position = Vector2( 56, 0 )
+texture = ExtResource( 8 )
 
 [node name="Body" type="Sprite" parent="."]
 light_mask = 0
@@ -42,11 +55,13 @@ offset = Vector2( -4.07, -10.093 )
 [node name="Hand" type="Node2D" parent="Body/Arm"]
 position = Vector2( 63, -1 )
 
-[node name="HandTop" type="Position2D" parent="Body/Arm"]
+[node name="HandTop" type="Sprite" parent="Body/Arm"]
 position = Vector2( 71, -10 )
+texture = ExtResource( 7 )
 
-[node name="HandBottom" type="Position2D" parent="Body/Arm"]
+[node name="HandBottom" type="Sprite" parent="Body/Arm"]
 position = Vector2( 71, 10 )
+texture = ExtResource( 6 )
 
 [node name="Elbow" type="Node2D" parent="Body"]
 position = Vector2( -19, -32 )
@@ -55,17 +70,50 @@ position = Vector2( -19, -32 )
 position = Vector2( -14.5, 2.5 )
 shape = SubResource( 2 )
 
+[node name="BeamViewport" type="Viewport" parent="."]
+size = Vector2( 1280, 720 )
+transparent_bg = true
+disable_3d = true
+usage = 0
+render_target_update_mode = 3
+
+[node name="LightBeamTexture" type="Sprite" parent="BeamViewport"]
+script = ExtResource( 4 )
+player_camera_path = NodePath("../../PlayerCamera")
+light_top_path = NodePath("../../FlashlightSpot/LightTop")
+light_end_path = NodePath("../../FlashlightSpot/LightEnd")
+light_bottom_path = NodePath("../../FlashlightSpot/LightBottom")
+hand_top_path = NodePath("../../Body/Arm/HandTop")
+hand_bottom_path = NodePath("../../Body/Arm/HandBottom")
+player_path = NodePath("../..")
+
 [node name="PlayerCamera" type="Camera2D" parent="."]
 position = Vector2( -90, -464 )
 anchor_mode = 0
 current = true
 
-[node name="LightBeam" type="Light2D" parent="."]
+[node name="LightBeam" type="Light2D" parent="PlayerCamera"]
 light_mask = 2
-position = Vector2( -90, -464 )
+texture = SubResource( 3 )
 offset = Vector2( 640, 360 )
 range_layer_max = 8
 range_item_cull_mask = 2
+
+[node name="LightDebugBoundary" type="Sprite" parent="PlayerCamera"]
+material = SubResource( 4 )
+script = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
+player_camera_path = NodePath("../../PlayerCamera")
+light_top_path = NodePath("../../FlashlightSpot/LightTop")
+light_end_path = NodePath("../../FlashlightSpot/LightEnd")
+light_bottom_path = NodePath("../../FlashlightSpot/LightBottom")
+hand_top_path = NodePath("../../Body/Arm/HandTop")
+hand_bottom_path = NodePath("../../Body/Arm/HandBottom")
+player_path = NodePath("../..")
+flip_y = false
+polyline = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../StateTimer")

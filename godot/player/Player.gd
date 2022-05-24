@@ -8,6 +8,8 @@ onready var flashlight = $FlashlightSpot
 onready var arm = $Body/Arm
 onready var hand = $Body/Arm/Hand
 onready var elbow = $Body/Elbow
+onready var light_top = $FlashlightSpot/LightTop
+onready var light_bottom = $FlashlightSpot/LightBottom
 #onready var flashlight_target = $FlashlightTarge
 var facing = 1
 
@@ -22,17 +24,22 @@ func setup():
 	handle_state(ExploreState.new(self))
 
 
-func update_flashlight():
+func update_flashlight(limit=true, update_arm=true):
 		var flashlight_length = hand.position.distance_to(flashlight.position)
 		var length_ratio = flashlight_length/original_flashlight_length
 		arm.rotation = elbow.global_position.direction_to(flashlight.global_position).angle()
 		if facing == 0:
 			arm.rotation = PI - arm.rotation
-		flashlight.position.x = clamp(flashlight.position.x, mouse_bounds.position.x,mouse_bounds.end.x)
-		flashlight.position.y = clamp(flashlight.position.y, mouse_bounds.position.y, mouse_bounds.end.y)
+		if limit:
+			flashlight.position.x = clamp(flashlight.position.x, mouse_bounds.position.x,mouse_bounds.end.x)
+			flashlight.position.y = clamp(flashlight.position.y, mouse_bounds.position.y, mouse_bounds.end.y)
 		flashlight.scale.x = length_ratio/4 + .5
 		flashlight.scale.y = length_ratio/8 + .5
+		if facing == 0:
+			flashlight.scale.y *= -1
 		flashlight.rotation = hand.global_position.direction_to(flashlight.global_position).angle()
+		if light_top.global_position.y > light_bottom.global_position.y:
+			flashlight.scale.y *= -1
 		flashlight.modulate.a = (2.5 - flashlight.scale.x) / 2
 
 
@@ -79,12 +86,13 @@ class TurningState extends EntityState:
 		pass
 	
 	func enter():
+		var tween_speed = 0.75
 		if _entity.facing == 1:
-			tween.interpolate_property(camera, "position", camera.position, _entity.left_camera_position, 0.5)
+			tween.interpolate_property(camera, "position", camera.position, _entity.left_camera_position, tween_speed)
 		else:
-			tween.interpolate_property(camera, "position", camera.position, _entity.right_camera_position, 0.5)
-		tween.interpolate_property(flashlight_spot, "position", flashlight_spot.position, flashlight_spot.position * Vector2(-1,1), 0.5)
-		tween.interpolate_property(self, "tween_progress", 0.0, 1.0, 0.5)
+			tween.interpolate_property(camera, "position", camera.position, _entity.right_camera_position, tween_speed)
+		tween.interpolate_property(flashlight_spot, "position", flashlight_spot.position, flashlight_spot.position * Vector2(-1,1), tween_speed)
+		tween.interpolate_property(self, "tween_progress", 0.0, 1.0, tween_speed)
 		tween.start()
 	
 	func physics_process(delta):
@@ -99,6 +107,7 @@ class TurningState extends EntityState:
 		else:
 			_entity.mouse_bounds = _entity.left_mouse_bounds
 			body.scale.x = -1
-		_entity.update_flashlight()
+		_entity.update_flashlight(false)
+
 	func tween_all_completed():
 		return ExploreState.new(_entity)
