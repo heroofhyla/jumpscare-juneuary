@@ -10,6 +10,7 @@ onready var hand = $Body/Arm/Hand
 onready var elbow = $Body/Elbow
 onready var light_top = $FlashlightSpot/LightTop
 onready var light_bottom = $FlashlightSpot/LightBottom
+onready var animation_player = $AnimationPlayer
 #onready var flashlight_target = $FlashlightTarge
 var facing = 1
 
@@ -19,6 +20,8 @@ var left_camera_position = Vector2(-1190,-465)
 var right_mouse_bounds = Rect2(117,-340, 916,460)
 var left_mouse_bounds = Rect2(-1280 + 364 - 117, -340, 916, 460)
 var mouse_bounds = right_mouse_bounds
+
+
 func setup():
 	.setup()
 	handle_state(ExploreState.new(self))
@@ -49,6 +52,7 @@ class ExploreState extends EntityState:
 		pass
 	
 	func enter():
+		_entity.get_node("AnimationPlayer").play("Walk")
 		var body:Sprite = _entity.get_node("Body")
 		if _entity.facing == 1:
 			body.scale.x = 1
@@ -66,9 +70,38 @@ class ExploreState extends EntityState:
 
 	func physics_process(delta):
 		var x_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+		if x_input == 0:
+			return StandState.new(_entity)
 		_entity.velocity.x = x_input * _entity.max_speed
 		_entity.velocity = _entity.move_and_slide(_entity.velocity)
-	  
+
+
+class StandState extends EntityState:
+	func _init(entity).(entity):
+		pass
+	
+	func enter():
+		_entity.get_node("AnimationPlayer").play("Stand")
+		var body:Sprite = _entity.get_node("Body")
+		if _entity.facing == 1:
+			body.scale.x = 1
+		else:
+			body.scale.x = -1
+	func input(event):
+		if event is InputEventMouseMotion:
+			var rel = event.relative
+			_entity.flashlight.position += rel
+			_entity.update_flashlight()
+			return
+
+		if event.is_action_pressed("turn"):
+			return TurningState.new(_entity)
+
+	func physics_process(delta):
+		var x_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+		if x_input != 0:
+			return ExploreState.new(_entity)
+
 
 class TurningState extends EntityState:
 	var tween:Tween
@@ -110,4 +143,4 @@ class TurningState extends EntityState:
 		_entity.update_flashlight(false)
 
 	func tween_all_completed():
-		return ExploreState.new(_entity)
+		return StandState.new(_entity)

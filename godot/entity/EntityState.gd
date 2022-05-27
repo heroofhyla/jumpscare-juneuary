@@ -39,3 +39,7 @@ func animation_finished() -> EntityState:
 
 func tween_all_completed() -> EntityState:
 	return null
+
+
+func animation_over() -> EntityState:
+	return null
