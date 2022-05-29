@@ -1,0 +1,31 @@
+The main mechanics:
+
+Walking around with a flashlight
+Not being able to see behind you without turning around
+
+Ideas:
+
+Different flashlight lenses
+Ghosts you can only see with your flashlight, but then the flashlight stops working for a bit as soon as you shine it on them
+Spotting certain clues in blacklight, spotting other clues in regular light, spotting some things only with your light turned off
+Maybe a red light as well
+
+Changes to try:
+
+Taller vertical resolution so you can't cover the whole area easily with your light
+Darker canvas modulation (pitch black?)
+
+More mechanics needed:
+
+Interacting with stuff!
+
+Story thoughts:
+
+- Why are you exploring somewhere spooky in the dark?
+- What is this place?
+- What danger is there?
+- What will you have to accomplish?
+- What will you have to do to survive?
+- What obstacles are in your way?
+- What themes are we exploring?
+

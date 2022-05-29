@@ -13,7 +13,7 @@ const audible_threshold := -80
 var players = []
 var next_player_id := 0
 var last_player_id := 0
-var full_path = str(get_path()) + "/" + name
+onready var full_path = str(get_path()) + "/" + name
 var audio_persist = null
 
 func _ready():

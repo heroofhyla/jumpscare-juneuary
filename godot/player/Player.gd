@@ -48,11 +48,13 @@ func update_flashlight(limit=true, update_arm=true):
 
 # Default "stand and walk and look around" state. Player is in full control.
 class ExploreState extends EntityState:
+	var animation_player
 	func _init(entity).(entity):
+		animation_player = entity.get_node("AnimationPlayer")
 		pass
 	
 	func enter():
-		_entity.get_node("AnimationPlayer").play("Walk")
+		animation_player.play("Stand")
 		var body:Sprite = _entity.get_node("Body")
 		if _entity.facing == 1:
 			body.scale.x = 1
@@ -71,36 +73,19 @@ class ExploreState extends EntityState:
 	func physics_process(delta):
 		var x_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 		if x_input == 0:
-			return StandState.new(_entity)
+			animation_player.play("Stand")
+		elif _entity.facing == 1:
+			if x_input > 0:
+				animation_player.play("Walk")
+			else:
+				animation_player.play("BackWalk")
+		else:
+			if x_input < 0:
+				animation_player.play("Walk")
+			else:
+				animation_player.play("BackWalk")
 		_entity.velocity.x = x_input * _entity.max_speed
 		_entity.velocity = _entity.move_and_slide(_entity.velocity)
-
-
-class StandState extends EntityState:
-	func _init(entity).(entity):
-		pass
-	
-	func enter():
-		_entity.get_node("AnimationPlayer").play("Stand")
-		var body:Sprite = _entity.get_node("Body")
-		if _entity.facing == 1:
-			body.scale.x = 1
-		else:
-			body.scale.x = -1
-	func input(event):
-		if event is InputEventMouseMotion:
-			var rel = event.relative
-			_entity.flashlight.position += rel
-			_entity.update_flashlight()
-			return
-
-		if event.is_action_pressed("turn"):
-			return TurningState.new(_entity)
-
-	func physics_process(delta):
-		var x_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-		if x_input != 0:
-			return ExploreState.new(_entity)
 
 
 class TurningState extends EntityState:
@@ -119,6 +104,7 @@ class TurningState extends EntityState:
 		pass
 	
 	func enter():
+		_entity.get_node("AnimationPlayer").play("Stand")
 		var tween_speed = 0.75
 		if _entity.facing == 1:
 			tween.interpolate_property(camera, "position", camera.position, _entity.left_camera_position, tween_speed)
@@ -143,4 +129,4 @@ class TurningState extends EntityState:
 		_entity.update_flashlight(false)
 
 	func tween_all_completed():
-		return StandState.new(_entity)
+		return ExploreState.new(_entity)

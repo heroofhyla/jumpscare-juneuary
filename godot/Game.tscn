@@ -14,7 +14,7 @@ light_mode = 2
 script = ExtResource( 3 )
 
 [node name="Darkness" type="CanvasModulate" parent="."]
-color = Color( 0.133333, 0.192157, 0.32549, 1 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="TestBg" type="Sprite" parent="."]
 texture = ExtResource( 2 )
