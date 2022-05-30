@@ -29,3 +29,45 @@ Story thoughts:
 - What obstacles are in your way?
 - What themes are we exploring?
 
+
+You are Randall Waters. You are going to your ex-wife's new place to pick up your daughter Angela. En route you have a near miss with a red sports car (add an intentional continuity error here wrt the time of day or something?).
+
+You get to the house -- a big mansion, and ring the bell. Angela comes running out, followed by your ex, Carla. She's not super happy to see you. She reminds Angela to go get something out of the house, so Angela runs back inside.
+
+She doesn't come back out.
+
+Eventually Carla goes back in to look for her. She doesn't return either.
+
+Finally, you need to go in after them. This is where the actual game starts, with a little puzzle to find the spare key and get inside.
+
+the BIG TWIST:
+
+Your wife and daughter are dead. They have been dead for some time. On a road trip some years ago, you were run off the road by the very same sports car seen in the introduction, and your family did not survive. Now, out of your mind with grief, you have wound up at the house owned by the driver of the other car. In a sort of fugue state, you refused to accept the deaths of your wife and daughter, and instead rewrote the events in your memory.
+
+During the opening scene there should be some stuff on the radio that Randall subconsciously picks up on. This can be used to create spooky stuff that happens in the house. Maybe a murderer on the loose who has been breaking into houses and hiding inside?
+
+Maybe you're actually that murderer?
+
+Act 1:
+
+Scene 1: On the road
+- Riding down highway, listening to the radio
+- Maybe a little driving minigame where you can change lanes?
+- The near miss with the sports car (QTE?)
+
+Scene 2: Change the tire
+- Basic interaction tutorial, including getting the trunk open, getting the spare tire and the jack, etc. etc.
+
+Scene 3: Back on the road
+- More uneventful driving with some news on the radio
+
+Scene 4: Arrival
+- Pull up at the house at dusk
+- Ring the bell, talk with Angela and Carla, dialogue tutorial
+
+Scene 5: Breaking in
+- Next interaction sequence where you have to find the spare key and use it to get inside
+
+Act 2:
+
+
