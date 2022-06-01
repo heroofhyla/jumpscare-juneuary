@@ -58,7 +58,7 @@ _global_script_class_icons={
 
 config/name="Jumpscare Juneuary Game"
 config/description="Name pending"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://Entryway.tscn"
 config/icon="res://icon.png"
 config/windows_native_icon="res://icon.ico"
 

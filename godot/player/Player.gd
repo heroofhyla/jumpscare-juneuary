@@ -15,10 +15,10 @@ onready var animation_player = $AnimationPlayer
 var facing = 1
 
 onready var original_flashlight_length = hand.position.distance_to(flashlight.position)
-var right_camera_position = Vector2(-90, -464)
-var left_camera_position = Vector2(-1190,-465)
-var right_mouse_bounds = Rect2(117,-340, 916,460)
-var left_mouse_bounds = Rect2(-1280 + 364 - 117, -340, 916, 460)
+var right_camera_position = Vector2(-90, -496)
+var left_camera_position = Vector2(-1190,-496)
+var right_mouse_bounds = Rect2(117,-400, 916,540)
+var left_mouse_bounds = Rect2(-1280 + 364 - 117, -400, 916, 540)
 var mouse_bounds = right_mouse_bounds
 
 

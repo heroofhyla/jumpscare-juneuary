@@ -519,7 +519,7 @@ tracks/9/keys = {
 
 [node name="Player" type="KinematicBody2D"]
 light_mask = 5
-position = Vector2( 90, 464 )
+position = Vector2( 90, 496 )
 script = ExtResource( 5 )
 
 [node name="FlashlightTarget" type="Node2D" parent="."]
@@ -604,7 +604,7 @@ hand_bottom_path = NodePath("../../Body/Arm/HandBottom")
 player_path = NodePath("../..")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-position = Vector2( -90, -464 )
+position = Vector2( -90, -496 )
 anchor_mode = 0
 current = true
 

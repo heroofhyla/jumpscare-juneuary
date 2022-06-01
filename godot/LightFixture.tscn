@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://light_poly.png" type="Texture" id=1]
+[ext_resource path="res://light_fixture.png" type="Texture" id=2]
+
+[node name="LightFixture" type="Sprite"]
+position = Vector2( 483, 300 )
+texture = ExtResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 1 )
+color = Color( 1, 1, 1, 0.466667 )
+mode = 2
+range_item_cull_mask = 5
+
+[node name="Light2D4" type="Light2D" parent="."]
+position = Vector2( -56, -48 )
+rotation = 1.20339
+texture = ExtResource( 1 )
+texture_scale = 0.25
+color = Color( 1, 1, 1, 0.466667 )
+mode = 2
+range_item_cull_mask = 5
+
+[node name="Light2D5" type="Light2D" parent="."]
+position = Vector2( 56, -48 )
+rotation = -0.371922
+texture = ExtResource( 1 )
+texture_scale = 0.25
+color = Color( 1, 1, 1, 0.466667 )
+mode = 2
+range_item_cull_mask = 5
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 0, 48 )
+rotation = 3.57443
+texture = ExtResource( 1 )
+texture_scale = 1.84
+color = Color( 1, 1, 1, 0.466667 )
+mode = 2
+range_item_cull_mask = 5
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( 0, 48 )
+rotation = 2.19039
+texture = ExtResource( 1 )
+texture_scale = 2.68
+color = Color( 1, 1, 1, 0.466667 )
+mode = 2
+range_item_cull_mask = 5
