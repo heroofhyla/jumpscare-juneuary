@@ -518,38 +518,20 @@ tracks/9/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+light_mask = 5
 position = Vector2( 90, 464 )
 script = ExtResource( 5 )
 
 [node name="FlashlightTarget" type="Node2D" parent="."]
 position = Vector2( 197, -33 )
 
-[node name="FlashlightSpot" type="Light2D" parent="."]
-position = Vector2( 163, -22 )
-texture = ExtResource( 3 )
-
-[node name="LightTop" type="Sprite" parent="FlashlightSpot"]
-visible = false
-position = Vector2( -1, -53 )
-texture = ExtResource( 7 )
-
-[node name="LightBottom" type="Sprite" parent="FlashlightSpot"]
-visible = false
-position = Vector2( -1, 57 )
-texture = ExtResource( 6 )
-
-[node name="LightEnd" type="Sprite" parent="FlashlightSpot"]
-visible = false
-position = Vector2( 56, 0 )
-texture = ExtResource( 8 )
-
 [node name="Body" type="Sprite" parent="."]
-light_mask = 0
+light_mask = 4
 z_index = 2
 texture = ExtResource( 10 )
 
 [node name="Arm" type="Sprite" parent="Body"]
-light_mask = 0
+light_mask = 4
 position = Vector2( -17, -30 )
 texture = ExtResource( 2 )
 centered = false
@@ -573,22 +555,26 @@ position = Vector2( -19, -32 )
 
 [node name="BackThigh" type="Sprite" parent="Body"]
 modulate = Color( 0.937255, 0.952941, 0.960784, 1 )
+light_mask = 4
 position = Vector2( -15, 38 )
 z_index = -1
 texture = ExtResource( 9 )
 offset = Vector2( 15, -54 )
 
 [node name="BackShin" type="Sprite" parent="Body/BackThigh"]
+light_mask = 4
 position = Vector2( 2, 49 )
 texture = ExtResource( 1 )
 offset = Vector2( 13, -98 )
 
 [node name="FrontThigh" type="Sprite" parent="Body"]
+light_mask = 4
 position = Vector2( -15, 38 )
 texture = ExtResource( 9 )
 offset = Vector2( 15, -54 )
 
 [node name="FrontShin" type="Sprite" parent="Body/FrontThigh"]
+light_mask = 4
 position = Vector2( 2, 49 )
 texture = ExtResource( 1 )
 offset = Vector2( 13, -98 )
@@ -609,7 +595,9 @@ render_target_update_mode = 3
 script = ExtResource( 4 )
 player_camera_path = NodePath("../../PlayerCamera")
 light_top_path = NodePath("../../FlashlightSpot/LightTop")
+light_top_end_path = NodePath("../../FlashlightSpot/LightTopEnd")
 light_end_path = NodePath("../../FlashlightSpot/LightEnd")
+light_bottom_end_path = NodePath("../../FlashlightSpot/LightBottomEnd")
 light_bottom_path = NodePath("../../FlashlightSpot/LightBottom")
 hand_top_path = NodePath("../../Body/Arm/HandTop")
 hand_bottom_path = NodePath("../../Body/Arm/HandBottom")
@@ -624,7 +612,15 @@ current = true
 light_mask = 2
 texture = SubResource( 3 )
 offset = Vector2( 640, 360 )
-range_layer_max = 8
+color = Color( 1, 1, 1, 0.145098 )
+mode = 2
+
+[node name="DustBeam" type="Light2D" parent="PlayerCamera"]
+light_mask = 2
+texture = SubResource( 3 )
+offset = Vector2( 640, 360 )
+color = Color( 1, 1, 1, 0.207843 )
+mode = 2
 range_item_cull_mask = 2
 
 [node name="LightDebugBoundary" type="Sprite" parent="PlayerCamera"]
@@ -636,13 +632,45 @@ __meta__ = {
 }
 player_camera_path = NodePath("../../PlayerCamera")
 light_top_path = NodePath("../../FlashlightSpot/LightTop")
+light_top_end_path = NodePath("../../FlashlightSpot/LightTopEnd")
 light_end_path = NodePath("../../FlashlightSpot/LightEnd")
+light_bottom_end_path = NodePath("../../FlashlightSpot/LightBottomEnd")
 light_bottom_path = NodePath("../../FlashlightSpot/LightBottom")
 hand_top_path = NodePath("../../Body/Arm/HandTop")
 hand_bottom_path = NodePath("../../Body/Arm/HandBottom")
 player_path = NodePath("../..")
 flip_y = false
 polyline = true
+
+[node name="FlashlightSpot" type="Light2D" parent="."]
+position = Vector2( 163, -22 )
+texture = ExtResource( 3 )
+mode = 2
+
+[node name="LightTop" type="Sprite" parent="FlashlightSpot"]
+visible = false
+position = Vector2( -1, -53 )
+texture = ExtResource( 7 )
+
+[node name="LightTopEnd" type="Sprite" parent="FlashlightSpot"]
+visible = false
+position = Vector2( 35, -38 )
+texture = ExtResource( 7 )
+
+[node name="LightBottom" type="Sprite" parent="FlashlightSpot"]
+visible = false
+position = Vector2( -1, 57 )
+texture = ExtResource( 6 )
+
+[node name="LightBottomEnd" type="Sprite" parent="FlashlightSpot"]
+visible = false
+position = Vector2( 37, 40 )
+texture = ExtResource( 6 )
+
+[node name="LightEnd" type="Sprite" parent="FlashlightSpot"]
+visible = false
+position = Vector2( 53, 0 )
+texture = ExtResource( 8 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath(".")

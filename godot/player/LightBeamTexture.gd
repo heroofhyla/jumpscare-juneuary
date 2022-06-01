@@ -2,7 +2,9 @@ extends Sprite
 
 export (NodePath) var player_camera_path
 export (NodePath) var light_top_path
+export (NodePath) var light_top_end_path
 export (NodePath) var light_end_path
+export (NodePath) var light_bottom_end_path
 export (NodePath) var light_bottom_path
 export (NodePath) var hand_top_path
 export (NodePath) var hand_bottom_path
@@ -10,7 +12,9 @@ export (NodePath) var player_path
 export (bool) var flip_y = true
 export (bool) var polyline = false
 var light_top
+var light_top_end
 var light_end
+var light_bottom_end
 var light_bottom
 var hand_top
 var hand_bottom
@@ -24,7 +28,9 @@ const translucent_white = Color(1,1,1,0.3)
 func _ready():
 	player_camera = get_node(player_camera_path)
 	light_top = get_node(light_top_path)
+	light_top_end = get_node(light_top_end_path)
 	light_end = get_node(light_end_path)
+	light_bottom_end = get_node(light_bottom_end_path)
 	light_bottom = get_node(light_bottom_path)
 	hand_top = get_node(hand_top_path)
 	hand_bottom = get_node(hand_bottom_path)
@@ -64,7 +70,9 @@ func _draw():
 
 	verts = [
 		build_point(light_top),
+		build_point(light_top_end),
 		build_point(light_end),
+		build_point(light_bottom_end),
 		build_point(light_bottom),
 		build_point(hand_bottom),
 		build_point(hand_top)
