@@ -4,7 +4,7 @@
 
 # Name of your game as it appears in the itch.io slug. Will also be used when
 # naming build folders.
-GAME="JUMPSCARE-JUNEUARY"
+GAME="jumpscare-juneuary"
 
 # Space-separated list of builds. Each entry is an itch.io upload channel name
 # followed by a colon, followed by the name of the game executable file.
