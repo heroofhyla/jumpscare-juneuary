@@ -14,3 +14,8 @@ func _input(event):
 			return
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		mouse_vis = true
+
+	if event.is_action_pressed("debug_1"):
+		$UI/TextPane.show()
+	if event.is_action_pressed("debug_2"):
+		$UI/TextPane.hide()

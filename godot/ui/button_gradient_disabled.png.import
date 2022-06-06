@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light_fixture_off.png-e42c30dd0016a2280a7b4e8b934d7d8f.stex"
+path="res://.import/button_gradient_disabled.png-0e46de00ccb15df6c9abbb175d5869ed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://light_fixture_off.png"
-dest_files=[ "res://.import/light_fixture_off.png-e42c30dd0016a2280a7b4e8b934d7d8f.stex" ]
+source_file="res://ui/button_gradient_disabled.png"
+dest_files=[ "res://.import/button_gradient_disabled.png-0e46de00ccb15df6c9abbb175d5869ed.stex" ]
 
 [params]
 

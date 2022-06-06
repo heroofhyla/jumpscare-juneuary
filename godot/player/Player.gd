@@ -104,6 +104,7 @@ class TurningState extends EntityState:
 		pass
 	
 	func enter():
+		EventBus.emit_signal("player_turning", 1 - _entity.facing)
 		_entity.get_node("AnimationPlayer").play("Stand")
 		var tween_speed = 0.75
 		if _entity.facing == 1:

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light_motes.png-aa69cf395efcb4d160e89dd9e569dab4.stex"
+path="res://.import/test_bg.png-23e7ae5249e582be51abf4e6d701df93.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://light_motes.png"
-dest_files=[ "res://.import/light_motes.png-aa69cf395efcb4d160e89dd9e569dab4.stex" ]
+source_file="res://map/test_bg.png"
+dest_files=[ "res://.import/test_bg.png-23e7ae5249e582be51abf4e6d701df93.stex" ]
 
 [params]
 

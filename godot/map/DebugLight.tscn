@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://map/debug_light.png" type="Texture" id=1]
+
+[node name="Light2D" type="Light2D"]
+editor_only = true
+texture = ExtResource( 1 )
+mode = 2

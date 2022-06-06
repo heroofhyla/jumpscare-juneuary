@@ -1,0 +1,34 @@
+[gd_resource type="Theme" load_steps=11 format=2]
+
+[ext_resource path="res://font/WalterTurncoat-Regular.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/button_gradient.png" type="Texture" id=2]
+[ext_resource path="res://ui/button_gradient_hover.png" type="Texture" id=3]
+[ext_resource path="res://ui/button_gradient_pressed.png" type="Texture" id=4]
+[ext_resource path="res://ui/button_gradient_disabled.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 16, 256 )
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 16, 256 )
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 16, 256 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 16, 256 )
+
+[resource]
+default_font = ExtResource( 1 )
+Button/colors/font_color_disabled = Color( 0.964706, 0.952941, 0.952941, 0.576471 )
+Button/styles/disabled = SubResource( 5 )
+Button/styles/focus = SubResource( 6 )
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = SubResource( 4 )

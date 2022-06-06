@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/doorknob.png-bcd9523f1f8a7b06876394e92ca6372a.stex"
+path="res://.import/b_icon.png-eb62ea75ef2a85d10a36a6f4be7f5f5d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://doorknob.png"
-dest_files=[ "res://.import/doorknob.png-bcd9523f1f8a7b06876394e92ca6372a.stex" ]
+source_file="res://player/b_icon.png"
+dest_files=[ "res://.import/b_icon.png-eb62ea75ef2a85d10a36a6f4be7f5f5d.stex" ]
 
 [params]
 
