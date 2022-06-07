@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/wall_tiles.png" type="Texture" id=2]
@@ -9,10 +9,6 @@
 [ext_resource path="res://map/doorknob.png" type="Texture" id=7]
 [ext_resource path="res://map/light_fixture_off.png" type="Texture" id=8]
 [ext_resource path="res://map/DebugLight.tscn" type="PackedScene" id=9]
-[ext_resource path="res://font/WalterTurncoat-Regular.tres" type="DynamicFont" id=10]
-[ext_resource path="res://ui/TextPane.gd" type="Script" id=11]
-[ext_resource path="res://ui/next_button.png" type="Texture" id=12]
-[ext_resource path="res://ui/game_theme.tres" type="Theme" id=13]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -85,9 +81,6 @@ light_mode = 2
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="CanvasItemMaterial" id=2]
-light_mode = 2
-
 [node name="Entryway" type="Node2D"]
 material = SubResource( 4 )
 script = ExtResource( 4 )
@@ -116,90 +109,46 @@ cell_size = Vector2( 360, 360 )
 format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 2, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 3, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-
-[node name="LightFixture" parent="." instance=ExtResource( 3 )]
+[node name="LightFixture" parent="TileMap" instance=ExtResource( 3 )]
 position = Vector2( 691, 300 )
 texture = ExtResource( 8 )
 turned_on = false
 
-[node name="LightFixture6" parent="." instance=ExtResource( 3 )]
+[node name="LightFixture6" parent="TileMap" instance=ExtResource( 3 )]
 position = Vector2( 251, 300 )
 
-[node name="LightFixture2" parent="." instance=ExtResource( 3 )]
+[node name="LightFixture2" parent="TileMap" instance=ExtResource( 3 )]
 position = Vector2( 1299, 300 )
 
-[node name="LightFixture3" parent="." instance=ExtResource( 3 )]
+[node name="LightFixture3" parent="TileMap" instance=ExtResource( 3 )]
 position = Vector2( 1924, 300 )
 texture = ExtResource( 8 )
 turned_on = false
 
-[node name="LightFixture4" parent="." instance=ExtResource( 3 )]
+[node name="LightFixture4" parent="TileMap" instance=ExtResource( 3 )]
 position = Vector2( 2539, 300 )
 
-[node name="LightFixture5" parent="." instance=ExtResource( 3 )]
+[node name="LightFixture5" parent="TileMap" instance=ExtResource( 3 )]
 position = Vector2( 3147, 300 )
 
-[node name="DustLayers" type="ParallaxBackground" parent="."]
-layer = 0
-scroll_limit_begin = Vector2( -9999, 9999 )
-scroll_limit_end = Vector2( 9999, 9999 )
+[node name="Player" parent="." instance=ExtResource( 1 )]
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="DustLayers"]
-visible = false
-light_mask = 2
-motion_offset = Vector2( 256, 0 )
-motion_mirroring = Vector2( 1280, 720 )
-script = ExtResource( 5 )
-
-[node name="LightMotes" type="Sprite" parent="DustLayers/ParallaxLayer"]
-material = SubResource( 2 )
-texture = ExtResource( 6 )
-centered = false
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="DustLayers"]
-visible = false
-light_mask = 2
-motion_scale = Vector2( 1.25, 1.25 )
-motion_offset = Vector2( 512, 0 )
-motion_mirroring = Vector2( 1280, 720 )
-script = ExtResource( 5 )
-y_drift = -5.0
-
-[node name="LightMotes" type="Sprite" parent="DustLayers/ParallaxLayer3"]
-material = SubResource( 2 )
-texture = ExtResource( 6 )
-centered = false
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="DustLayers"]
-visible = false
-light_mask = 2
-motion_scale = Vector2( 1.5, 1.5 )
-motion_mirroring = Vector2( 1280, 720 )
-script = ExtResource( 5 )
-y_drift = 5.0
-
-[node name="LightMotes" type="Sprite" parent="DustLayers/ParallaxLayer2"]
-material = SubResource( 2 )
-texture = ExtResource( 6 )
-centered = false
-
-[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+[node name="Dust" type="ParallaxBackground" parent="."]
 layer = -1
 scroll_limit_begin = Vector2( -9999, 9999 )
 scroll_limit_end = Vector2( 9999, 9999 )
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground2"]
+[node name="DustLayer" type="ParallaxLayer" parent="Dust"]
 light_mask = 2
 motion_offset = Vector2( 256, 0 )
 motion_mirroring = Vector2( 1280, 720 )
 script = ExtResource( 5 )
 
-[node name="LightMotes" type="Sprite" parent="ParallaxBackground2/ParallaxLayer"]
+[node name="LightMotes" type="Sprite" parent="Dust/DustLayer"]
 texture = ExtResource( 6 )
 centered = false
 
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground2"]
+[node name="DustLayer2" type="ParallaxLayer" parent="Dust"]
 light_mask = 2
 motion_scale = Vector2( 1.25, 1.25 )
 motion_offset = Vector2( 512, 0 )
@@ -207,18 +156,18 @@ motion_mirroring = Vector2( 1280, 720 )
 script = ExtResource( 5 )
 y_drift = -5.0
 
-[node name="LightMotes" type="Sprite" parent="ParallaxBackground2/ParallaxLayer3"]
+[node name="LightMotes" type="Sprite" parent="Dust/DustLayer2"]
 texture = ExtResource( 6 )
 centered = false
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground2"]
+[node name="DustLayer3" type="ParallaxLayer" parent="Dust"]
 light_mask = 2
 motion_scale = Vector2( 1.5, 1.5 )
 motion_mirroring = Vector2( 1280, 720 )
 script = ExtResource( 5 )
 y_drift = 5.0
 
-[node name="LightMotes" type="Sprite" parent="ParallaxBackground2/ParallaxLayer2"]
+[node name="LightMotes" type="Sprite" parent="Dust/DustLayer3"]
 texture = ExtResource( 6 )
 centered = false
 
@@ -233,65 +182,3 @@ color = Color( 0.145098, 0, 0, 1 )
 [node name="Doorknob" type="Sprite" parent="."]
 position = Vector2( 1714, 436 )
 texture = ExtResource( 7 )
-
-[node name="UI" type="CanvasLayer" parent="."]
-layer = 10
-
-[node name="TextPane" type="ColorRect" parent="UI"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-rect_min_size = Vector2( 480, 0 )
-color = Color( 0.0980392, 0, 0, 0.839216 )
-script = ExtResource( 11 )
-
-[node name="TextMargin" type="MarginContainer" parent="UI/TextPane"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-custom_constants/margin_right = 16
-custom_constants/margin_top = 16
-custom_constants/margin_left = 16
-custom_constants/margin_bottom = 16
-
-[node name="Text" type="Label" parent="UI/TextPane/TextMargin"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 464.0
-margin_bottom = 704.0
-size_flags_vertical = 1
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-custom_colors/font_color_shadow = Color( 0.32549, 0, 0, 1 )
-custom_constants/shadow_offset_x = 3
-custom_constants/shadow_offset_y = 3
-custom_fonts/font = ExtResource( 10 )
-text = "The shadows aren't black here.
-
-They are an angry buzzing red. The color of old blood.
-
-Who hurt them?"
-autowrap = true
-
-[node name="Tween" type="Tween" parent="UI/TextPane"]
-
-[node name="Button" type="Button" parent="UI/TextPane"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -38.0
-focus_mode = 0
-theme = ExtResource( 13 )
-
-[node name="CenterContainer" type="CenterContainer" parent="UI/TextPane/Button"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="UI/TextPane/Button/CenterContainer"]
-margin_left = 224.0
-margin_top = 3.0
-margin_right = 256.0
-margin_bottom = 35.0
-mouse_filter = 2
-texture = ExtResource( 12 )

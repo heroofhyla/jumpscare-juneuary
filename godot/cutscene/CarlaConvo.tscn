@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://cutscene/carla-convo-bg.png" type="Texture" id=1]
+[ext_resource path="res://cutscene/angela.png" type="Texture" id=2]
+[ext_resource path="res://cutscene/carla.png" type="Texture" id=3]
+
+[node name="CarlaConvo" type="Node2D"]
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Carla" type="Sprite" parent="."]
+position = Vector2( 969, 427 )
+texture = ExtResource( 3 )
+
+[node name="Angela" type="Sprite" parent="."]
+position = Vector2( 690, 533 )
+texture = ExtResource( 2 )

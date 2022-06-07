@@ -1,0 +1,5 @@
+extends Node
+
+enum {STATE_EXPLORE, STATE_CUTSCENE, STATE_INSERT}
+
+var state = STATE_EXPLORE

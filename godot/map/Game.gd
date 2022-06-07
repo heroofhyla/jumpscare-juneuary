@@ -16,6 +16,20 @@ func _input(event):
 		mouse_vis = true
 
 	if event.is_action_pressed("debug_1"):
-		$UI/TextPane.show()
-	if event.is_action_pressed("debug_2"):
-		$UI/TextPane.hide()
+		UI.show_messages([
+			"""And so this is Christmas.
+			
+			And what have you done?
+			
+			Another year older.
+			
+			A new one just begun.""",
+			
+			"""And so this is Christmas.
+			
+			I hope you have fun.
+			
+			The near and the dear ones.
+			
+			The old and the young."""
+			])

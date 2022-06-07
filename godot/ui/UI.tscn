@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://font/WalterTurncoat-Regular.tres" type="DynamicFont" id=1]
+[ext_resource path="res://ui/next_button.png" type="Texture" id=2]
+[ext_resource path="res://ui/TextPane.gd" type="Script" id=3]
+[ext_resource path="res://ui/game_theme.tres" type="Theme" id=4]
+[ext_resource path="res://ui/UI.gd" type="Script" id=5]
+
+[node name="UI" type="CanvasLayer"]
+layer = 10
+script = ExtResource( 5 )
+
+[node name="TextPane" type="ColorRect" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+rect_min_size = Vector2( 480, 0 )
+color = Color( 0.0980392, 0, 0, 0.839216 )
+script = ExtResource( 3 )
+
+[node name="TextMargin" type="MarginContainer" parent="TextPane"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 16
+custom_constants/margin_top = 16
+custom_constants/margin_left = 16
+custom_constants/margin_bottom = 16
+
+[node name="Text" type="Label" parent="TextPane/TextMargin"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 464.0
+margin_bottom = 704.0
+size_flags_vertical = 1
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.32549, 0, 0, 1 )
+custom_constants/shadow_offset_x = 3
+custom_constants/shadow_offset_y = 3
+custom_fonts/font = ExtResource( 1 )
+text = "The shadows aren't black here.
+
+They are an angry buzzing red. The color of old blood.
+
+Who hurt them?"
+autowrap = true
+
+[node name="Tween" type="Tween" parent="TextPane"]
+
+[node name="Button" type="Button" parent="TextPane"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -38.0
+focus_mode = 0
+theme = ExtResource( 4 )
+enabled_focus_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="TextPane/Button"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="TextPane/Button/CenterContainer"]
+margin_left = 224.0
+margin_top = 3.0
+margin_right = 256.0
+margin_bottom = 35.0
+mouse_filter = 2
+texture = ExtResource( 2 )

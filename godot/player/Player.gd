@@ -71,6 +71,8 @@ class ExploreState extends EntityState:
 			return TurningState.new(_entity)
 
 	func physics_process(delta):
+		if Game.state != Game.STATE_EXPLORE:
+			return GameBusyState.new(_entity)
 		var x_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 		if x_input == 0:
 			animation_player.play("Stand")
@@ -131,3 +133,14 @@ class TurningState extends EntityState:
 
 	func tween_all_completed():
 		return ExploreState.new(_entity)
+
+
+class GameBusyState extends EntityState:
+	var animation_player
+	func _init(entity).(entity):
+		animation_player = entity.get_node("AnimationPlayer")
+	func enter():
+		animation_player.play("Stand")
+	func physics_process(delta):
+		if Game.state == Game.STATE_EXPLORE:
+			return ExploreState.new(_entity)

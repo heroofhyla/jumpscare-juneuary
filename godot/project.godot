@@ -67,6 +67,8 @@ config/windows_native_icon="res://icon.ico"
 Persistence="*res://global_state/Persistence.gd"
 AudioManager="*res://audio/AudioManager.tscn"
 EventBus="*res://global_state/EventBus.gd"
+Game="*res://global_state/Game.gd"
+UI="*res://ui/UI.tscn"
 
 [display]
 
