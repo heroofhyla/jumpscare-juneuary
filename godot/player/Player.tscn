@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://player/player_shin.png" type="Texture" id=1]
 [ext_resource path="res://player/arm.png" type="Texture" id=2]
@@ -517,6 +517,125 @@ tracks/9/keys = {
 "values": [ 22.1814, 66.9839, 11.4582, 3.67786 ]
 }
 
+[sub_resource type="Animation" id=9]
+resource_name = "FlickerOff"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("FlashlightSpot:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 1.1, 1.2, 1.3, 1.4, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerCamera/DustBeam:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 1.1, 1.2, 1.3, 1.4, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerCamera/LightBeam:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 1.1, 1.2, 1.3, 1.4, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "FlickerOn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("FlashlightSpot:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 0.4, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerCamera/DustBeam:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.4, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerCamera/LightBeam:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2, 0.4, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("FlashlightSpot:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PlayerCamera/DustBeam:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("PlayerCamera/LightBeam:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 light_mask = 5
 position = Vector2( 90, 496 )
@@ -614,6 +733,7 @@ texture = SubResource( 3 )
 offset = Vector2( 640, 360 )
 color = Color( 1, 1, 1, 0.145098 )
 mode = 2
+range_item_cull_mask = 17
 
 [node name="DustBeam" type="Light2D" parent="PlayerCamera"]
 light_mask = 2
@@ -621,7 +741,7 @@ texture = SubResource( 3 )
 offset = Vector2( 640, 360 )
 color = Color( 1, 1, 1, 0.207843 )
 mode = 2
-range_item_cull_mask = 2
+range_item_cull_mask = 17
 
 [node name="LightDebugBoundary" type="Sprite" parent="PlayerCamera"]
 visible = false
@@ -646,6 +766,7 @@ polyline = true
 position = Vector2( 163, -22 )
 texture = ExtResource( 3 )
 mode = 2
+range_item_cull_mask = 17
 
 [node name="LightTop" type="Sprite" parent="FlashlightSpot"]
 visible = false
@@ -672,6 +793,11 @@ visible = false
 position = Vector2( 53, 0 )
 texture = ExtResource( 8 )
 
+[node name="FlashlightDetector" type="Area2D" parent="FlashlightSpot"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlashlightSpot/FlashlightDetector"]
+polygon = PoolVector2Array( -1, -54, 36, -39, 52, -2, 37, 41, -2, 59, -299, 0 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath(".")
 anims/BackWalk = SubResource( 8 )
@@ -683,3 +809,8 @@ blend_times = [ "BackWalk", "Stand", 0.25, "BackWalk", "Walk", 0.25, "Stand", "B
 [node name="StateTimer" type="Timer" parent="."]
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="FlashlightPlayer" type="AnimationPlayer" parent="."]
+anims/FlickerOff = SubResource( 9 )
+anims/FlickerOn = SubResource( 11 )
+anims/RESET = SubResource( 10 )

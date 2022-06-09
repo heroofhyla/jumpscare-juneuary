@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://map/wall_tiles.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://map/doorknob.png" type="Texture" id=7]
 [ext_resource path="res://map/light_fixture_off.png" type="Texture" id=8]
 [ext_resource path="res://map/DebugLight.tscn" type="PackedScene" id=9]
+[ext_resource path="res://enemy/Ghost.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -81,6 +82,9 @@ light_mode = 2
 3/shapes = [  ]
 3/z_index = 0
 
+[sub_resource type="CanvasItemMaterial" id=7]
+light_mode = 2
+
 [node name="Entryway" type="Node2D"]
 material = SubResource( 4 )
 script = ExtResource( 4 )
@@ -110,6 +114,7 @@ format = 1
 tile_data = PoolIntArray( 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 2, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 3, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0 )
 
 [node name="LightFixture" parent="TileMap" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 691, 300 )
 texture = ExtResource( 8 )
 turned_on = false
@@ -139,17 +144,18 @@ scroll_limit_begin = Vector2( -9999, 9999 )
 scroll_limit_end = Vector2( 9999, 9999 )
 
 [node name="DustLayer" type="ParallaxLayer" parent="Dust"]
-light_mask = 2
+light_mask = 0
 motion_offset = Vector2( 256, 0 )
 motion_mirroring = Vector2( 1280, 720 )
 script = ExtResource( 5 )
 
 [node name="LightMotes" type="Sprite" parent="Dust/DustLayer"]
+light_mask = 2
 texture = ExtResource( 6 )
 centered = false
 
 [node name="DustLayer2" type="ParallaxLayer" parent="Dust"]
-light_mask = 2
+light_mask = 0
 motion_scale = Vector2( 1.25, 1.25 )
 motion_offset = Vector2( 512, 0 )
 motion_mirroring = Vector2( 1280, 720 )
@@ -157,17 +163,63 @@ script = ExtResource( 5 )
 y_drift = -5.0
 
 [node name="LightMotes" type="Sprite" parent="Dust/DustLayer2"]
+light_mask = 2
 texture = ExtResource( 6 )
 centered = false
 
 [node name="DustLayer3" type="ParallaxLayer" parent="Dust"]
-light_mask = 2
+light_mask = 0
 motion_scale = Vector2( 1.5, 1.5 )
 motion_mirroring = Vector2( 1280, 720 )
 script = ExtResource( 5 )
 y_drift = 5.0
 
 [node name="LightMotes" type="Sprite" parent="Dust/DustLayer3"]
+light_mask = 2
+texture = ExtResource( 6 )
+centered = false
+
+[node name="GhostDust" type="ParallaxBackground" parent="."]
+layer = 1
+scroll_limit_begin = Vector2( -9999, 9999 )
+scroll_limit_end = Vector2( 9999, 9999 )
+
+[node name="DustLayer" type="ParallaxLayer" parent="GhostDust"]
+light_mask = 0
+motion_offset = Vector2( 256, 0 )
+motion_mirroring = Vector2( 1280, 720 )
+script = ExtResource( 5 )
+
+[node name="LightMotes" type="Sprite" parent="GhostDust/DustLayer"]
+light_mask = 8
+material = SubResource( 7 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="DustLayer2" type="ParallaxLayer" parent="GhostDust"]
+light_mask = 0
+motion_scale = Vector2( 1.25, 1.25 )
+motion_offset = Vector2( 512, 0 )
+motion_mirroring = Vector2( 1280, 720 )
+script = ExtResource( 5 )
+y_drift = -5.0
+
+[node name="LightMotes" type="Sprite" parent="GhostDust/DustLayer2"]
+light_mask = 8
+material = SubResource( 7 )
+texture = ExtResource( 6 )
+centered = false
+
+[node name="DustLayer3" type="ParallaxLayer" parent="GhostDust"]
+light_mask = 0
+motion_scale = Vector2( 1.5, 1.5 )
+motion_mirroring = Vector2( 1280, 720 )
+script = ExtResource( 5 )
+y_drift = 5.0
+
+[node name="LightMotes" type="Sprite" parent="GhostDust/DustLayer3"]
+light_mask = 8
+material = SubResource( 7 )
 texture = ExtResource( 6 )
 centered = false
 
@@ -182,3 +234,6 @@ color = Color( 0.145098, 0, 0, 1 )
 [node name="Doorknob" type="Sprite" parent="."]
 position = Vector2( 1714, 436 )
 texture = ExtResource( 7 )
+
+[node name="Ghost" parent="." instance=ExtResource( 10 )]
+position = Vector2( 742, 562 )

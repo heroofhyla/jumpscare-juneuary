@@ -11,8 +11,12 @@ onready var elbow = $Body/Elbow
 onready var light_top = $FlashlightSpot/LightTop
 onready var light_bottom = $FlashlightSpot/LightBottom
 onready var animation_player = $AnimationPlayer
+onready var flashlight_detector = $FlashlightSpot/FlashlightDetector
+onready var flashlight_player = $FlashlightPlayer
+
 #onready var flashlight_target = $FlashlightTarge
 var facing = 1
+var on_ghost = false
 
 onready var original_flashlight_length = hand.position.distance_to(flashlight.position)
 var right_camera_position = Vector2(-90, -496)
@@ -25,7 +29,23 @@ var mouse_bounds = right_mouse_bounds
 func setup():
 	.setup()
 	handle_state(ExploreState.new(self))
+	var detector = get_node("FlashlightSpot/FlashlightDetector")
+	detector.connect("body_entered", self, "_flashlight_entered")
+	detector.connect("body_exited", self, "_flashlight_exited")
 
+func _flashlight_entered(other:KinematicBody2D):
+	if other.is_in_group("ghost"):
+		if not on_ghost:
+			flashlight_player.play("FlickerOff")
+			on_ghost = true
+	pass
+
+func _flashlight_exited(other:KinematicBody2D):
+	if other.is_in_group("ghost"):
+		if on_ghost:
+			on_ghost = false
+			flashlight_player.play("FlickerOn")
+	pass
 
 func update_flashlight(limit=true, update_arm=true):
 		var flashlight_length = hand.position.distance_to(flashlight.position)
