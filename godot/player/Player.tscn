@@ -794,6 +794,8 @@ position = Vector2( 53, 0 )
 texture = ExtResource( 8 )
 
 [node name="FlashlightDetector" type="Area2D" parent="FlashlightSpot"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="FlashlightSpot/FlashlightDetector"]
 polygon = PoolVector2Array( -1, -54, 36, -39, 52, -2, 37, 41, -2, 59, -299, 0 )
