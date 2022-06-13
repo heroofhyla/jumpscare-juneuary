@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wall_tiles.png-b052c3fec39e13ddcd9f50da8d44a30e.stex"
+path="res://.import/doorknob.png-394f06b67aebc37dbe7c43db6322d9e2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map/wall_tiles.png"
-dest_files=[ "res://.import/wall_tiles.png-b052c3fec39e13ddcd9f50da8d44a30e.stex" ]
+source_file="res://map/parts/doorknob.png"
+dest_files=[ "res://.import/doorknob.png-394f06b67aebc37dbe7c43db6322d9e2.stex" ]
 
 [params]
 

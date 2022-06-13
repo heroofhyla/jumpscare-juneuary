@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/light_fixture.png-724d317f50ff8c8268f40073758d49ad.stex"
+path="res://.import/wall_tiles.png-9c6ca8f894f7811f1d5130177cd21b70.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map/light_fixture.png"
-dest_files=[ "res://.import/light_fixture.png-724d317f50ff8c8268f40073758d49ad.stex" ]
+source_file="res://map/parts/wall_tiles.png"
+dest_files=[ "res://.import/wall_tiles.png-9c6ca8f894f7811f1d5130177cd21b70.stex" ]
 
 [params]
 
