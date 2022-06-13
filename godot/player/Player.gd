@@ -3,16 +3,20 @@ extends Entity
 const max_speed = 200
 var velocity = Vector2.ZERO
 
-onready var flashlight = $FlashlightSpot
-#onready var flashlight = $Body/Arm/FlashlightBeam
-onready var arm = $Body/FlashlightArm
-onready var hand = $Body/FlashlightArm/Hand
-onready var elbow = $Body/Elbow
-onready var light_top = $FlashlightSpot/LightTop
-onready var light_bottom = $FlashlightSpot/LightBottom
-onready var animation_player = $AnimationPlayer
-onready var flashlight_detector = $FlashlightSpot/FlashlightDetector
-onready var flashlight_player = $FlashlightPlayer
+var flashlight 
+var arm 
+var hand 
+var elbow 
+var light_top 
+var light_bottom 
+var animation_player 
+var flashlight_detector 
+var flashlight_player 
+var flashlight_bicep 
+var unarmed_bicep 
+var light_beam 
+var dust_beam 
+var flashlight_shape 
 
 #onready var flashlight_target = $FlashlightTarge
 var facing = 1
@@ -24,14 +28,55 @@ var left_camera_position = Vector2(-1190,-496)
 var right_mouse_bounds = Rect2(117,-400, 916,540)
 var left_mouse_bounds = Rect2(-1280 + 364 - 117, -400, 916, 540)
 var mouse_bounds = right_mouse_bounds
+var has_flashlight = false
+
+func toggle_flashlight(has_flash):
+	has_flashlight = has_flash
+	if has_flashlight:
+		flashlight_bicep.visible = true
+		arm.visible = true
+		unarmed_bicep.visible = false
+		flashlight.visible = true
+		light_beam.visible = true
+		dust_beam.visible = true
+		flashlight_shape.disabled = false
+	else:
+		unarmed_bicep.visible = true
+		flashlight_bicep.visible = false
+		arm.visible = false
+		flashlight.visible = false
+		light_beam.visible = false
+		dust_beam.visible = false
+		flashlight_shape.disabled = true
+
+# onready doesn't play well with inherited classes, so we have to init these
+# variables here instead
+func init_variables():
+	flashlight = get_node("FlashlightSpot")
+	arm = get_node("Body/FlashlightArm")
+	hand = get_node("Body/FlashlightArm/Hand")
+	elbow = get_node("Body/Elbow")
+	light_top = get_node("FlashlightSpot/LightTop")
+	light_bottom = get_node("FlashlightSpot/LightBottom")
+	animation_player = get_node("AnimationPlayer")
+	flashlight_detector = get_node("FlashlightSpot/FlashlightDetector")
+	flashlight_player = get_node("FlashlightPlayer")
+	flashlight_bicep = get_node("Body/FlashlightBicep")
+	unarmed_bicep = get_node("Body/NormalBicep")
+	light_beam = get_node("PlayerCamera/LightBeam")
+	dust_beam = get_node("PlayerCamera/DustBeam")
+	flashlight_shape = get_node("FlashlightSpot/FlashlightDetector/CollisionPolygon2D")
 
 
 func setup():
 	.setup()
+	init_variables()
 	handle_state(ExploreState.new(self))
 	var detector = get_node("FlashlightSpot/FlashlightDetector")
 	detector.connect("body_entered", self, "_flashlight_entered")
 	detector.connect("body_exited", self, "_flashlight_exited")
+	toggle_flashlight(false)
+
 
 func _flashlight_entered(other:KinematicBody2D):
 	if other.is_in_group("ghost"):
