@@ -5,8 +5,8 @@ var velocity = Vector2.ZERO
 
 onready var flashlight = $FlashlightSpot
 #onready var flashlight = $Body/Arm/FlashlightBeam
-onready var arm = $Body/Arm
-onready var hand = $Body/Arm/Hand
+onready var arm = $Body/FlashlightArm
+onready var hand = $Body/FlashlightArm/Hand
 onready var elbow = $Body/Elbow
 onready var light_top = $FlashlightSpot/LightTop
 onready var light_bottom = $FlashlightSpot/LightBottom
